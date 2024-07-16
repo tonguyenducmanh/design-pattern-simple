@@ -48,5 +48,24 @@ namespace DesignPatternTest
             Assert.IsTrue(testDateTime == "11/06/2024 09:00:00");
             Assert.IsTrue(testDateTime2 == "01/01/2023 12:00:00");
         }
+
+        /// <summary>
+        /// kiểm tra xem có lấy thành công service không
+        /// </summary>
+        [TestMethod]
+        public void TestFactoryMethod_GetServiceSuccess() 
+        {
+            // chuẩn bị dữ liệu
+            PrintBase service1 = new FactoryMethod().GetService(FileType.Html);
+            PrintBase service2 = new FactoryMethod().GetService(FileType.Excel);
+
+            // lấy dữ liệu
+            string result1 = service1.Print();
+            string result2 = service2.Print();
+
+            // test kết quả
+            Assert.AreEqual(result1, "Printed Html File");
+            Assert.AreEqual(result2, "Printed Excel File");
+        }
     }
 }
