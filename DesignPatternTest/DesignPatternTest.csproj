@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SingletonDP\DesignPattern.csproj" />
+    <ProjectReference Include="..\DesignPattern\DesignPattern.csproj" />
   </ItemGroup>
 
   <ItemGroup>
