@@ -30,6 +30,7 @@ namespace DesignPatternTest
         [TestMethod]
         public void TestBuilder_BuildSuccess()
         {
+            // chuẩn bị dữ liệu
             string testDateTime = new Builder()
                                     .BuildDay(11)
                                     .BuildMonth(06)
@@ -39,7 +40,13 @@ namespace DesignPatternTest
                                     .BuildSecond(00)
                                     .GetResult()
                                     .ToString();
+            string testDateTime2 = new Builder()
+                                    .BuildYear(2023)
+                                    .GetResult()
+                                    .ToString();
+            // test
             Assert.IsTrue(testDateTime == "11/06/2024 09:00:00");
+            Assert.IsTrue(testDateTime2 == "01/01/2023 12:00:00");
         }
     }
 }
