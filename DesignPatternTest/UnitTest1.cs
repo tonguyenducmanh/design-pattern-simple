@@ -14,10 +14,14 @@ namespace DesignPatternTest
         [TestMethod]
         public void TestSingleton_OneInstance()
         {
+            // chuẩn bị dữ liệu
             Singleton singleton = Singleton.Instance;
             Singleton singleton2 = Singleton.Instance;
+            Singleton singleton3 = new Singleton();
 
+            // test
             Assert.AreEqual(singleton, singleton2);
+            Assert.AreNotEqual(singleton, singleton3);
         }
     }
 }
