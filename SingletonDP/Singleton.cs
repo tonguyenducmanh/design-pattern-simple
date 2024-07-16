@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SingletonDP
+namespace DesignPattern
 {
     /// <summary>
     /// class theo mô hình SingletonPattern
