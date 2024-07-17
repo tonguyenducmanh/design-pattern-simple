@@ -94,5 +94,41 @@ namespace DesignPatternTest
             Assert.IsTrue (resultWindow.Count > 0);
             Assert.IsTrue (resultUbuntu.Count > 0);
         }
+
+        /// <summary>
+        /// kiểm tra việc clone object của prototype pattern
+        /// </summary>
+        [TestMethod]
+        public void TestPrototype_CloneSuccess()
+        {
+            // chuẩn bị
+            string originalName = "Jack Daniels";
+            int originalNum = 666;
+            int changedNum = 3838;
+            PersonPrototype p1 = new PersonPrototype();
+            p1.Age = 42;
+            p1.BirthDate = new DateTime(1977, 1, 1);
+            p1.Name = originalName;
+            p1.IDInfo = new PersionIDInfo(originalNum);
+
+
+            // biến đổi dữ liệu
+            PersonPrototype p2 = p1.ShallowCopy();
+            PersonPrototype p3 = p1.DeepCopy();
+
+            p1.Age = 32;
+            p1.BirthDate = new DateTime(2024, 1, 1);
+            p1.Name = "Frank";
+            p1.IDInfo.IDNumber = changedNum;
+
+
+            // kết quả
+            Assert.IsNotNull(p2);
+            Assert.IsNotNull(p3);
+            Assert.AreEqual(p2.Name, originalName);
+            Assert.AreEqual(p3.Name, originalName);
+            Assert.AreNotEqual(p2.IDInfo.IDNumber, originalNum);
+            Assert.AreNotEqual(p3.IDInfo.IDNumber, changedNum);
+        }
     }
 }
