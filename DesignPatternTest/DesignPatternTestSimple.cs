@@ -9,7 +9,8 @@ namespace DesignPatternTest
     public class DesignPatternTestSimple
     {
         /// <summary>
-        /// kiểm tra xem có phải chỉ có 1 instance duy nhất theo singleton pattern không
+        /// kiểm tra xem có phải chỉ có 1 instance duy nhất 
+        /// theo singleton pattern không
         /// </summary>
         [TestMethod]
         public void TestSingleton_OneInstance()
@@ -25,7 +26,8 @@ namespace DesignPatternTest
         }
 
         /// <summary>
-        /// kiểm tra xem có build được string theo builder pattern không
+        /// kiểm tra xem có build được string 
+        /// theo builder pattern không
         /// </summary>
         [TestMethod]
         public void TestBuilder_BuildSuccess()
@@ -50,7 +52,8 @@ namespace DesignPatternTest
         }
 
         /// <summary>
-        /// kiểm tra xem có lấy thành công service không
+        /// kiểm tra xem có lấy thành công service
+        /// theo mô hình Factory method pattern không
         /// </summary>
         [TestMethod]
         public void TestFactoryMethod_GetServiceSuccess() 
@@ -66,6 +69,30 @@ namespace DesignPatternTest
             // test kết quả
             Assert.AreEqual(result1, "Printed Html File");
             Assert.AreEqual(result2, "Printed Excel File");
+        }
+
+        /// <summary>
+        /// kiểm tra xem có tạo được GUI (giao diện người dùng ứng dụng)
+        /// cho nhiều hệ điều hành theo mô hình Abtract factory pattern không
+        /// </summary>
+        [TestMethod]
+        public void TestAbtractFactory_BuildApplicationSuccess() 
+        {
+            // chuẩn bị
+            ApplicationAbtractFactory windowApp = new ApplicationAbtractFactory(EnumOS.Window);
+            ApplicationAbtractFactory ubuntuApp = new ApplicationAbtractFactory(EnumOS.Ubuntu);
+
+            // test dữ liệu
+
+            windowApp.CreateUI();
+            List<string> resultWindow = windowApp.Paint();
+            ubuntuApp.CreateUI();
+            List<string> resultUbuntu = ubuntuApp.Paint();
+
+            // kết quả
+
+            Assert.IsTrue (resultWindow.Count > 0);
+            Assert.IsTrue (resultUbuntu.Count > 0);
         }
     }
 }
