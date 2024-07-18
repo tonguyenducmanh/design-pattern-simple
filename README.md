@@ -1,5 +1,7 @@
 # solution implement các design pattern thường gặp
 
+## Creational Patterns: các pattern hướng tới việc khởi tạo object
+
 Singleton pattern: đảm bảo chỉ tồn tại duy nhất 1 instance trong toàn ứng dụng
 
 ![SingletonExample](Img/SingletonExample.png)
@@ -19,3 +21,9 @@ Abstract factory pattern: dựng ra 1 họ nhiều object có mối liên hệ v
 Prototype pattern: tạo ra 1 bản sao của object hiện tại, do việc khởi tạo lại được object đó rất tốn kém hoặc có logic phức tạp, việc clone sẽ nhanh hơn, mong muốn che giấu logic khởi tạo. Nếu làm theo cách thủ công là khởi tạo object, copy các property thì sẽ gặp vấn đề có 1 số property ở trạng thái private không copy được
 
 ![PrototypeExample](Img/PrototypeExample1.png) ![PrototypeExample](Img/PrototypeExample2.png) ![PrototypeExample](Img/PrototypeExample3.png)
+
+## Structural Patterns: hướng tới việc tập hợp đối tượng và lớp thành cấu trúc lớn hơn, trong khi vẫn giữ cho các cấu trúc này linh hoạt và hiệu quả
+
+Adapter pattern: cho phép các đối tượng có interface không tương thích cộng tác với nhau. Được sinh ra để giúp 2 hệ thống không tương thích tương tác với nhau. Theo đúng nguyên tác "để tương thích chứ không phải để sửa đổi". Thay vì cố gắng sửa 2 hệ thống để chạy được, ta tạo ra 1 bộ chuyển đổi (Adapter) để chúng giao tiếp được với nhau.
+
+![AdapterExample](Img/AdapterExample1.png) ![AdapterExample](Img/AdapterExample2.png) ![AdapterExample](Img/AdapterExample3.png)

@@ -130,5 +130,29 @@ namespace DesignPatternTest
             Assert.AreNotEqual(p2.IDInfo.IDNumber, originalNum);
             Assert.AreNotEqual(p3.IDInfo.IDNumber, changedNum);
         }
+
+        /// <summary>
+        /// Kiểm tra xem liệu đèn có thể sáng thông qua bộ chuyển đổi nguồn điện
+        /// theo Adapter pattern
+        /// </summary>
+        [TestMethod]
+        public void TestAdapter_ResultLedStatus() 
+        {
+            // chuẩn bị
+            VietNamElectric vietNamElectric = new VietNamElectric();
+
+            // biến đổi dữ liệu
+            vietNamElectric.VonElectric = 220;
+            LedStatus led1 = new AdapterElectric(vietNamElectric).ConnectToElectric();
+            vietNamElectric.VonElectric = 100;
+            LedStatus led2 = new AdapterElectric(vietNamElectric).ConnectToElectric();
+            vietNamElectric.VonElectric = 320;
+            LedStatus led3 = new AdapterElectric(vietNamElectric).ConnectToElectric();
+            
+            // check kết quả
+            Assert.AreEqual(led1, LedStatus.On);
+            Assert.AreEqual(led2, LedStatus.Off);
+            Assert.AreEqual(led3, LedStatus.Fired);
+        }
     }
 }
