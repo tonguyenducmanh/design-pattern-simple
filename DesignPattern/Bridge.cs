@@ -90,33 +90,32 @@ namespace DesignPattern
             device.SetChannel(device.GetChannel() + 1);
         }
 
+        #endregion
+    }
+    /// <summary>
+    /// có thể tạo ra 1 class khác kế thừa điều khiển tách biệt hoàn toàn với class thiết bị
+    /// </summary>
+    public class AdvanceRemoteControl : RemoteControl
+    {
+        #region Contructor
+
         /// <summary>
-        /// có thể tạo ra 1 class khác kế thừa điều khiển tách biệt hoàn toàn với class thiết bị
+        /// hàm khởi tạo
         /// </summary>
-        public class AdvanceRemoteControl : RemoteControl
+        public AdvanceRemoteControl(IDevice device) : base(device)
         {
-            #region Contructor
+        }
 
-            /// <summary>
-            /// hàm khởi tạo
-            /// </summary>
-            public AdvanceRemoteControl(IDevice device) : base(device)
-            {
-            }
+        #endregion
 
-            #endregion
+        #region Methods
 
-            #region Methods
-
-            /// <summary>
-            /// tắt tiếng của thiết bị
-            /// </summary>
-            public void MuteDevice()
-            {
-                device.SetVolume(0);
-            }
-
-            #endregion
+        /// <summary>
+        /// tắt tiếng của thiết bị
+        /// </summary>
+        public void MuteDevice()
+        {
+            device.SetVolume(0);
         }
 
         #endregion

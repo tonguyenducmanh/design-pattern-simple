@@ -1,5 +1,4 @@
 ﻿using DesignPattern;
-using static DesignPattern.RemoteControl;
 
 namespace DesignPatternTest
 {
