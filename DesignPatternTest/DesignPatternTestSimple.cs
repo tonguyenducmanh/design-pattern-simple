@@ -218,5 +218,27 @@ namespace DesignPatternTest
 
             Assert.AreEqual(everyLeafResult.Count, 5);
         }
+
+        /// <summary>
+        /// kiểm tra pha cà phê có thành công không
+        /// </summary>
+        [TestMethod]
+        public void TestDecoratorPattern_MakeCoffeeSuccess()
+        {
+            // chuẩn bị
+            ICoffee coffee = new SimpleCoffee();
+
+            coffee = new MilkDecorator(coffee);
+
+            coffee = new SugarDecorator(coffee);
+
+            // xử lý dữ liệu
+            List<int> costs = coffee.GetCost();
+            List<string> descriptions = coffee.GetDescription();
+
+            // kết quả
+            Assert.AreEqual(costs.Count, 3);
+            Assert.AreEqual(descriptions.Count, 3);
+        }
     }
 }

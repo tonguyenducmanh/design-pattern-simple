@@ -19,3 +19,5 @@
 [Bridge](Doc/Bridge.md)
 
 [Composite](Doc/Composite.md)
+
+[Decorator](Doc/Decorator.md)
