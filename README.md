@@ -17,3 +17,5 @@
 [Adapter](Doc/Adapter.md)
 
 [Bridge](Doc/Bridge.md)
+
+[Composite](Doc/Composite.md)

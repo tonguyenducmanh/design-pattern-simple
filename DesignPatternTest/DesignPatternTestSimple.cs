@@ -57,7 +57,7 @@ namespace DesignPatternTest
         /// theo mô hình Factory method pattern không
         /// </summary>
         [TestMethod]
-        public void TestFactoryMethod_GetServiceSuccess() 
+        public void TestFactoryMethod_GetServiceSuccess()
         {
             // chuẩn bị dữ liệu
             PrintBase service1 = new FactoryMethod().GetService(FileType.Html);
@@ -77,7 +77,7 @@ namespace DesignPatternTest
         /// cho nhiều hệ điều hành theo mô hình Abtract factory pattern không
         /// </summary>
         [TestMethod]
-        public void TestAbtractFactory_BuildApplicationSuccess() 
+        public void TestAbtractFactory_BuildApplicationSuccess()
         {
             // chuẩn bị
             ApplicationAbtractFactory windowApp = new ApplicationAbtractFactory(EnumOS.Window);
@@ -92,8 +92,8 @@ namespace DesignPatternTest
 
             // kết quả
 
-            Assert.IsTrue (resultWindow.Count > 0);
-            Assert.IsTrue (resultUbuntu.Count > 0);
+            Assert.IsTrue(resultWindow.Count > 0);
+            Assert.IsTrue(resultUbuntu.Count > 0);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace DesignPatternTest
         /// theo Adapter pattern
         /// </summary>
         [TestMethod]
-        public void TestAdapter_ResultLedStatus() 
+        public void TestAdapter_ResultLedStatus()
         {
             // chuẩn bị
             VietNamElectric vietNamElectric = new VietNamElectric();
@@ -149,7 +149,7 @@ namespace DesignPatternTest
             LedStatus led2 = new AdapterElectric(vietNamElectric).ConnectToElectric();
             vietNamElectric.VonElectric = 320;
             LedStatus led3 = new AdapterElectric(vietNamElectric).ConnectToElectric();
-            
+
             // check kết quả
             Assert.AreEqual(led1, LedStatus.On);
             Assert.AreEqual(led2, LedStatus.Off);
@@ -177,6 +177,46 @@ namespace DesignPatternTest
             // kết quả
             Assert.AreNotEqual(tv.GetVolumne(), 0);
             Assert.AreEqual(radio.GetVolumne(), 0);
+        }
+
+        /// <summary>
+        /// vẽ đồ họa pixel theo mô hình cây hiệu quả
+        /// </summary>
+        [TestMethod]
+        public void TestCompositePattern_DrawPixelSuccess()
+        {
+            // chuẩn bị
+
+            // đối tượng hình cây
+            ComponentOfComposite allComponents = new ComponentOfComposite();
+
+            // xử lý dữ liệu
+
+            // thêm các lá vào trong cây
+            allComponents.Add(new DotOfComposite(1, 2));
+            allComponents.Add(new CircleOfComposite(10, 12, 5));
+
+            // thêm các cành vào trong cây
+
+            ComponentOfComposite branch = new ComponentOfComposite();
+            List<ICompositeGraphic> branchComponents = new List<ICompositeGraphic>() 
+            { 
+                new DotOfComposite(12, 0),
+                new DotOfComposite(22, 1),
+                new CircleOfComposite(06, 07, 20)
+            };
+            foreach (ICompositeGraphic component in branchComponents)
+            {
+                branch.Add(component);
+            }
+            allComponents.Add(branch);
+
+            string drawResult = allComponents.Draw();
+            List<string> everyLeafResult = drawResult.Split(";").ToList();
+
+            // kết quả
+
+            Assert.AreEqual(everyLeafResult.Count, 5);
         }
     }
 }
