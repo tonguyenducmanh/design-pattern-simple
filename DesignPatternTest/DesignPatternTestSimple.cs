@@ -1,4 +1,5 @@
 ﻿using DesignPattern;
+using static DesignPattern.RemoteControl;
 
 namespace DesignPatternTest
 {
@@ -153,6 +154,29 @@ namespace DesignPatternTest
             Assert.AreEqual(led1, LedStatus.On);
             Assert.AreEqual(led2, LedStatus.Off);
             Assert.AreEqual(led3, LedStatus.Fired);
+        }
+
+        /// <summary>
+        /// kiểm tra xem có điều khiển được thiết bị thông qua điều khiển không
+        /// </summary>
+        [TestMethod]
+        public void TestBridgePattern_DeviceRemoteSuccess()
+        {
+            // chuẩn bị
+            Televition tv = new Televition();
+            RemoteControl remoteTv = new RemoteControl(tv);
+            Radio radio = new Radio();
+            AdvanceRemoteControl remoteRadio = new AdvanceRemoteControl(radio);
+
+            // xử lý dữ liệu
+            tv.SetVolume(0);
+            remoteTv.VolumnUp();
+
+            remoteRadio.MuteDevice();
+
+            // kết quả
+            Assert.AreNotEqual(tv.GetVolumne(), 0);
+            Assert.AreEqual(radio.GetVolumne(), 0);
         }
     }
 }
